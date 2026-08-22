@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coalition Mondiale Occulte - Site 42</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>🌙 Coalition</h1>
+        <button id="logoutBtn" class="btn-logout">📤 Logout</button>
+      </div>
+
+      <div class="user-info">
+        <div id="userProfile">
+          <p><strong id="userName">Chargement...</strong></p>
+          <p id="userRole" class="role-badge">Utilisateur</p>
+        </div>
+      </div>
+
+      <div class="channels-section">
+        <h3>Salons</h3>
+        <button id="createChannelBtn" class="btn-create">+ Créer salon</button>
+        <div id="channelsList" class="channels-list">
+          <!-- Salons générés dynamiquement -->
+        </div>
+      </div>
+
+      <div class="roles-section" id="rolesSection" style="display:none;">
+        <h3>Gestion Rôles</h3>
+        <button id="createRoleBtn" class="btn-create">+ Créer rôle</button>
+        <div id="rolesList" class="roles-list">
+          <!-- Rôles générés dynamiquement -->
+        </div>
+      </div>
+
+      <div class="users-section" id="usersSection" style="display:none;">
+        <h3>Utilisateurs</h3>
+        <div id="usersList" class="users-list">
+          <!-- Utilisateurs générés dynamiquement -->
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- CHANNEL VIEW -->
+      <div id="channelView" class="channel-view" style="display:none;">
+        <div class="channel-header">
+          <h2 id="channelName">#general</h2>
+          <p id="channelDescription" class="channel-desc">Description du salon</p>
+        </div>
+
+        <div id="messagesList" class="messages-list">
+          <!-- Messages générés dynamiquement -->
+        </div>
+
+        <div class="message-input">
+          <input 
+            type="text" 
+            id="messageInput" 
+            placeholder="Tapez un message..."
+            maxlength="1000"
+          >
+          <button id="sendBtn" class="btn-send">📤 Envoyer</button>
+        </div>
+      </div>
+
+      <!-- LOGIN VIEW -->
+      <div id="loginView" class="login-view">
+        <div class="login-card">
+          <h1>🌙 Coalition Mondiale Occulte</h1>
+          <p class="subtitle">Site 42</p>
+
+          <div id="loginForm">
+            <input 
+              type="email" 
+              id="loginEmail" 
+              placeholder="Email"
+              required
+            >
+            <input 
+              type="password" 
+              id="loginPassword" 
+              placeholder="Mot de passe"
+              required
+            >
+            <button id="loginBtn" class="btn-primary">Se connecter</button>
+          </div>
+
+          <hr>
+
+          <div id="registerForm" style="display:none;">
+            <input 
+              type="text" 
+              id="regUsername" 
+              placeholder="Nom d'utilisateur"
+              required
+            >
+            <input 
+              type="email" 
+              id="regEmail" 
+              placeholder="Email"
+              required
+            >
+            <input 
+              type="password" 
+              id="regPassword" 
+              placeholder="Mot de passe"
+              required
+            >
+            <button id="registerBtn" class="btn-primary">S'inscrire</button>
+          </div>
+
+          <button id="toggleFormBtn" class="btn-link">Pas de compte ? S'inscrire</button>
+          <p id="messageAlert" class="alert-message"></p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODALS -->
+  <div id="createChannelModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>Créer un salon</h2>
+      <input type="text" id="newChannelName" placeholder="Nom du salon" required>
+      <input type="text" id="newChannelDesc" placeholder="Description">
+      <select id="newChannelType">
+        <option value="text">Texte</option>
+        <option value="voice">Vocal</option>
+        <option value="announcement">Annonce</option>
+      </select>
+      <label>
+        <input type="checkbox" id="newChannelPrivate"> Privé
+      </label>
+      <button id="confirmChannelBtn" class="btn-primary">Créer</button>
+      <button id="closeChannelModal" class="btn-secondary">Annuler</button>
+    </div>
+  </div>
+
+  <div id="createRoleModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>Créer un rôle</h2>
+      <input type="text" id="newRoleName" placeholder="Nom du rôle" required>
+      <input type="text" id="newRoleDesc" placeholder="Description">
+      <input type="color" id="newRoleColor" value="#7289DA">
+      <div id="permissionsCheckbox" class="permissions-list">
+        <!-- Permissions générées dynamiquement -->
+      </div>
+      <button id="confirmRoleBtn" class="btn-primary">Créer</button>
+      <button id="closeRoleModal" class="btn-secondary">Annuler</button>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
